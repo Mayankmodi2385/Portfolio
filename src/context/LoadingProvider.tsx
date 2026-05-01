@@ -10,7 +10,7 @@ import Loading from "../components/Loading";
 interface LoadingType {
   isLoading: boolean;
   setIsLoading: (state: boolean) => void;
-  setLoading: (percent: number) => void;
+  setLoading: (percent: number | ((prev: number) => number)) => void;
 }
 
 export const LoadingContext = createContext<LoadingType | null>(null);
@@ -24,7 +24,17 @@ export const LoadingProvider = ({ children }: PropsWithChildren) => {
     setIsLoading,
     setLoading,
   };
+
   useEffect(() => {}, [loading]);
+
+  // FIX: If loading stuck at 0% after 4s (WebGL failed), force to 100%
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoading((prev: number) => (prev < 10 ? 100 : prev));
+    }, 4000);
+
+    return () => clearTimeout(timeout);
+  }, []);
 
   return (
     <LoadingContext.Provider value={value as LoadingType}>

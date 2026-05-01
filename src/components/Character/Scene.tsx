@@ -28,9 +28,17 @@ const Scene = () => {
       const scene = sceneRef.current;
 
       const renderer = new THREE.WebGLRenderer({
-        alpha: true,
-        antialias: true,
-      });
+  alpha: true,
+  antialias: true,
+});
+
+// FIX: If WebGL context failed, unblock the loader and exit
+if (!renderer.getContext()) {
+  console.warn("WebGL not available, skipping 3D scene.");
+  setLoading(100);
+  return;
+}
+
       renderer.setSize(container.width, container.height);
       renderer.setPixelRatio(window.devicePixelRatio);
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
