@@ -20,6 +20,7 @@ const Scene = () => {
   const { setLoading } = useLoading();
 
   const [character, setChar] = useState<THREE.Object3D | null>(null);
+
   useEffect(() => {
     if (canvasDiv.current) {
       let rect = canvasDiv.current.getBoundingClientRect();
@@ -27,17 +28,22 @@ const Scene = () => {
       const aspect = container.width / container.height;
       const scene = sceneRef.current;
 
-      const renderer = new THREE.WebGLRenderer({
-  alpha: true,
-  antialias: true,
-});
+      // FIX: Wrap renderer creation in try/catch so WebGL crash doesn't kill the page
+      let renderer: THREE.WebGLRenderer;
+      try {
+        renderer = new THREE.WebGLRenderer({
+          alpha: true,
+          antialias: true,
+        });
 
-// FIX: If WebGL context failed, unblock the loader and exit
-if (!renderer.getContext()) {
-  console.warn("WebGL not available, skipping 3D scene.");
-  setLoading(100);
-  return;
-}
+        if (!renderer.getContext()) {
+          throw new Error("WebGL context is null");
+        }
+      } catch (e) {
+        console.warn("WebGL not supported, skipping 3D scene.");
+        setLoading(100);
+        return;
+      }
 
       renderer.setSize(container.width, container.height);
       renderer.setPixelRatio(window.devicePixelRatio);
@@ -81,6 +87,10 @@ if (!renderer.getContext()) {
             handleResize(renderer, camera, canvasDiv, character)
           );
         }
+      }).catch(() => {
+        // FIX: If model fails to load, still unlock the loader
+        console.warn("Failed to load 3D character model.");
+        setLoading(100);
       });
 
       let mouse = { x: 0, y: 0 },
@@ -114,6 +124,7 @@ if (!renderer.getContext()) {
         landingDiv.addEventListener("touchstart", onTouchStart);
         landingDiv.addEventListener("touchend", onTouchEnd);
       }
+
       const animate = () => {
         requestAnimationFrame(animate);
         if (headBone) {
@@ -134,6 +145,7 @@ if (!renderer.getContext()) {
         renderer.render(scene, camera);
       };
       animate();
+
       return () => {
         clearTimeout(debounce);
         scene.clear();
