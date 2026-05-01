@@ -3,6 +3,7 @@
   max-width: var(--cMaxWidth);
   width: var(--cWidth);
   justify-content: space-between;
+  align-items: center;
   padding: 20px 0px;
   margin-bottom: -100px;
   box-sizing: border-box;
@@ -12,6 +13,56 @@
   top: 0;
   z-index: 9999;
 }
+
+/* Frosted cyberpunk top bar */
+.header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(5,8,16,0.9) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.navbar-title {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: 3px;
+  color: var(--accentColor);
+  text-shadow: var(--glowCyan);
+  position: relative;
+}
+
+.navbar-title::before {
+  content: "[ ";
+  opacity: 0.5;
+}
+.navbar-title::after {
+  content: " ]";
+  opacity: 0.5;
+}
+
+.navbar-connect {
+  position: absolute;
+  display: none;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Share Tech Mono", monospace;
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: rgba(0,255,247,0.6);
+  border-bottom: 1px solid rgba(0,255,247,0.3);
+  padding-bottom: 2px;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.navbar-connect:hover {
+  color: var(--accentColor);
+  border-color: var(--accentColor);
+}
+
 .header ul {
   font-size: 12px;
   display: flex;
@@ -23,61 +74,109 @@
   row-gap: 8px;
   align-items: end;
 }
+
 .header ul li {
   margin-left: 0px;
-  letter-spacing: 1px;
-  color: #ccc;
+  letter-spacing: 3px;
+  color: #aaa;
   font-weight: 600;
   cursor: pointer;
+  font-family: "Orbitron", sans-serif;
+  font-size: 10px;
+  transition: color 0.3s;
+  position: relative;
 }
-.navbar-connect {
-  position: absolute;
-  display: none;
-  left: 50%;
+
+.header ul li::before {
+  content: "//";
+  color: var(--accentColor);
+  margin-right: 6px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.header ul li:hover::before {
+  opacity: 1;
+}
+
+.header ul li:hover {
+  color: var(--accentColor);
+}
+
+/* Neon underline on active nav items */
+.landing-circle1 {
+  top: 0%;
+  left: 0%;
+  z-index: 15;
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0,255,247,0.15) 0%, transparent 70%);
+  filter: blur(40px);
+  border-radius: 50%;
+  animation: loadingCircle 8s linear infinite;
+  pointer-events: none;
+}
+
+.nav-fade {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 130px;
+  background-image: linear-gradient(0deg, transparent, var(--backgroundColor) 70%);
+  pointer-events: none;
+  z-index: 12;
+  opacity: 0;
+  left: 0;
+}
+
+@keyframes loadingCircle {
+  0% { transform: translate(-95%, -75%) rotateZ(0deg); }
+  100% { transform: translate(-95%, -75%) rotateZ(360deg); }
+}
+
+.landing-circle2 {
   top: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 15px;
-  letter-spacing: 1px;
-  font-weight: 500;
+  right: 0%;
+  transform: translate(calc(100% - 2px), -50%);
+  z-index: 9;
+  position: fixed;
+  display: none;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255,45,120,0.12) 0%, transparent 70%);
+  filter: blur(50px);
+  border-radius: 50%;
+  animation: loadingCircle2 8s linear infinite;
+  pointer-events: none;
 }
-.navbar-title {
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.2px;
+
+@keyframes loadingCircle2 {
+  100% { transform: translate(calc(100% - 2px), -50%) rotate(360deg); }
 }
+
 @media only screen and (min-width: 500px) {
-  .header {
-    padding: 20px 0px;
-  }
+  .header { padding: 20px 0px; }
   .header ul {
     flex-direction: row;
     align-items: center;
-    font-size: 14px;
+    font-size: 11px;
   }
-  .header ul li {
-    color: #eae5ec;
-  }
-  .navbar-title {
-    font-size: 16px;
-  }
+  .header ul li { color: #888; }
+  .navbar-title { font-size: 16px; }
+  .landing-circle2 { display: block; }
 }
+
 @media only screen and (min-width: 900px) {
-  .navbar-connect {
-    display: block;
-  }
+  .navbar-connect { display: block; }
 }
+
 @media only screen and (min-width: 1200px) {
-  .header {
-    padding: 35px 0px;
-  }
+  .header { padding: 35px 0px; }
   .header ul {
-    column-gap: 80px;
-    font-size: 16px;
+    column-gap: 60px;
+    font-size: 12px;
   }
-  .navbar-connect {
-    font-size: 16px;
-  }
-  .navbar-title {
-    font-size: 18px;
-  }
+  .navbar-connect { font-size: 14px; }
+  .navbar-title { font-size: 20px; }
 }

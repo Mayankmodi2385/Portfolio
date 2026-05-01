@@ -7,22 +7,69 @@
   background-color: var(--backgroundColor);
 }
 
+/* Top neon divider */
+.contact-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accentColor), var(--accentPink, #ff2d78), transparent);
+  box-shadow: 0 0 15px var(--accentColor), 0 0 30px rgba(255,45,120,0.4);
+}
+
 .contact-section h3 {
   font-size: 60px;
-  font-weight: 400;
+  font-weight: 900;
   text-transform: uppercase;
-  margin: 0;
+  margin: 0 0 40px 0;
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 6px;
+  background: linear-gradient(135deg, var(--accentColor), var(--accentPink, #ff2d78));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+.contact-section h3::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  background: linear-gradient(135deg, rgba(0,255,247,0.15), rgba(255,45,120,0.15));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  z-index: -1;
 }
 
 .contact-flex {
   display: flex;
   justify-content: space-between;
+  gap: 30px;
 }
 
 .contact-flex h4 {
-  font-weight: 500;
-  margin: 0;
-  opacity: 0.6;
+  font-weight: 400;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin: 0 0 8px 0;
+  color: var(--accentColor);
+  opacity: 0.8;
+}
+
+.contact-flex h4::before {
+  content: "[ ";
+  opacity: 0.5;
+}
+.contact-flex h4::after {
+  content: " ]";
+  opacity: 0.5;
 }
 
 .contact-box {
@@ -31,64 +78,83 @@
 }
 
 .contact-flex p {
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 15px;
+  color: #8899aa;
+  line-height: 1.5;
 }
 
 a.contact-social {
-  font-size: 25px;
-  border-bottom: 1px solid #ccc;
+  font-size: 22px;
+  font-family: "Orbitron", sans-serif;
+  font-weight: 500;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba(0,255,247,0.2);
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  transition: color 0.3s, border-color 0.3s, text-shadow 0.3s;
+  color: #ccc;
+}
+
+a.contact-social:hover {
+  color: var(--accentColor);
+  border-color: var(--accentColor);
+  text-shadow: var(--glowCyan);
 }
 
 .contact-box h2 {
   font-weight: 400;
-  font-size: 23px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 18px;
   margin: 0;
+  line-height: 1.6;
+  letter-spacing: 1px;
 }
 
-.contact-box h2>span {
+.contact-box h2 > span {
   color: var(--accentColor);
+  text-shadow: var(--glowCyan);
+  font-weight: 700;
 }
 
 .contact-box h5 {
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Share Tech Mono", monospace;
   line-height: 20px;
   display: flex;
   gap: 10px;
-  opacity: 0.5;
+  opacity: 0.4;
+  margin-top: 16px;
+}
+
+/* Cyberpunk box accent */
+.contact-box:first-child {
+  border-left: 2px solid rgba(0,255,247,0.3);
+  padding-left: 20px;
+}
+
+.contact-box:last-child {
+  border-right: 2px solid rgba(255,45,120,0.3);
+  padding-right: 20px;
 }
 
 @media only screen and (max-width: 1600px) {
-  .contact-section h3 {
-    font-size: 50px;
-  }
-
-  .contact-box h2 {
-    font-size: 20px;
-  }
-
-  a.contact-social {
-    font-size: 22px;
-  }
+  .contact-section h3 { font-size: 50px; }
+  .contact-box h2 { font-size: 16px; }
+  a.contact-social { font-size: 19px; }
 }
 
 @media only screen and (max-width: 1300px) {
-  .contact-section h3 {
-    font-size: 40px;
-  }
-
-  .contact-box h2 {
-    font-size: 18px;
-  }
-
-  a.contact-social {
-    font-size: 20px;
-  }
-
-  .contact-flex p {
-    margin-top: 0px;
-  }
+  .contact-section h3 { font-size: 40px; }
+  .contact-box h2 { font-size: 14px; }
+  a.contact-social { font-size: 17px; }
+  .contact-flex p { margin-top: 0px; }
 }
 
 @media only screen and (max-width: 900px) {
@@ -96,21 +162,10 @@ a.contact-social {
     flex-direction: column;
     gap: 40px;
   }
-
-  .contact-flex p {
-    margin-bottom: 0px;
-  }
-
-  .contact-flex h4 {
-    margin-top: 20px;
-  }
-
-  .contact-section {
-    margin-top: 50px;
-    padding-bottom: 50px;
-  }
-
-  .contact-container {
-    width: calc(100% - 25px);
-  }
+  .contact-flex p { margin-bottom: 0px; }
+  .contact-flex h4 { margin-top: 20px; }
+  .contact-section { margin-top: 50px; padding-bottom: 50px; }
+  .contact-container { width: calc(100% - 25px); }
+  .contact-box:first-child { border-left: none; border-top: 2px solid rgba(0,255,247,0.3); padding-left: 0; padding-top: 20px; }
+  .contact-box:last-child { border-right: none; padding-right: 0; }
 }
