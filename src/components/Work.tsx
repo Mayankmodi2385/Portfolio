@@ -23,8 +23,8 @@ const projects = [
     title: "Influx — EV Charging App",
     category: "EV Charging Web App",
     tools: "React.js, REST APIs, Real-time Data",
-    image: "https://api.microlink.io/?url=https://car-rental-app-ecru-nine.vercel.app/&screenshot=true&meta=false&embed=screenshot.url",
-    link: "https://car-rental-app-ecru-nine.vercel.app/",
+    image: "https://api.microlink.io/?url=https:/https://influx-project.vercel.app//&screenshot=true&meta=false&embed=screenshot.url",
+    link: "https://influx-project.vercel.app/",
   },
   {
     title: "DigiDine",
