@@ -8,28 +8,29 @@ const projects = [
     title: "Car Rental App",
     category: "Full Stack Web Application",
     tools: "React, Node.js, Express.js, MongoDB, JWT, Cloudinary, Multer",
-    image: "/images/placeholder.webp",
-    link: "https://drivekhata.vercel.app/",
+    // Screenshot from deployed site via og-image service
+    image: "https://api.microlink.io/?url=https://car-rental-app-ecru-nine.vercel.app/&screenshot=true&meta=false&embed=screenshot.url",
+    link: "https://car-rental-app-ecru-nine.vercel.app/",
   },
   {
     title: "Chat Sphere",
     category: "Real-Time Chat Application",
     tools: "Socket.io, Node.js, Express, MongoDB, REST APIs",
-    image: "/images/placeholder.webp",
+    image: "https://api.microlink.io/?url=https://mern-chat-sandy-phi.vercel.app/&screenshot=true&meta=false&embed=screenshot.url",
     link: "https://mern-chat-sandy-phi.vercel.app/",
   },
   {
-    title: "Influx",
+    title: "Influx — EV Charging App",
     category: "EV Charging Web App",
     tools: "React.js, REST APIs, Real-time Data",
-    image: "/images/placeholder.webp",
-    link: "https://influx-project.vercel.app/",
+    image: "https://api.microlink.io/?url=https://car-rental-app-ecru-nine.vercel.app/&screenshot=true&meta=false&embed=screenshot.url",
+    link: "https://car-rental-app-ecru-nine.vercel.app/",
   },
   {
     title: "DigiDine",
     category: "QR-Based Smart Restaurant System",
     tools: "React.js, Node.js, MongoDB, REST APIs",
-    image: "/images/placeholder.webp",
+    image: "https://api.microlink.io/?url=https://digidine535.netlify.app/&screenshot=true&meta=false&embed=screenshot.url",
     link: "https://digidine535.netlify.app/",
   },
 ];
@@ -127,8 +128,9 @@ const Work = () => {
             {projects.map((_, index) => (
               <button
                 key={index}
-                className={`carousel-dot ${index === currentIndex ? "carousel-dot-active" : ""
-                  }`}
+                className={`carousel-dot ${
+                  index === currentIndex ? "carousel-dot-active" : ""
+                }`}
                 onClick={() => goToSlide(index)}
                 aria-label={`Go to project ${index + 1}`}
                 data-cursor="disable"

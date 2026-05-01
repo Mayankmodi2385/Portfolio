@@ -4,6 +4,8 @@
   margin: auto;
   position: relative;
   height: var(--vh);
+  /* Solid dark background - critical for mobile photo blend */
+  background-color: var(--backgroundColor);
 }
 
 .landing-container {
@@ -14,7 +16,7 @@
   max-width: var(--cMaxWidth);
 }
 
-/* ── Glitch intro text ── */
+/* ── Intro text ── */
 .landing-intro {
   position: absolute;
   z-index: 9;
@@ -55,7 +57,7 @@
   position: relative;
 }
 
-/* Glitch effect on name */
+/* Glitch effect */
 .landing-intro h1::before,
 .landing-intro h1::after {
   content: attr(data-text);
@@ -65,14 +67,14 @@
 }
 
 .landing-intro h1::before {
-  color: var(--accentCyan, #00fff7);
-  animation: glitch1 3s infinite;
+  color: #00fff7;
+  animation: glitch1 4s infinite;
   clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
 }
 
 .landing-intro h1::after {
-  color: var(--accentPink, #ff2d78);
-  animation: glitch2 3s infinite;
+  color: #ff2d78;
+  animation: glitch2 4s infinite;
   clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
 }
 
@@ -140,7 +142,7 @@ h2.landing-info-h2 {
   position: relative;
   margin-left: -5px;
   color: var(--accentColor);
-  text-shadow: var(--glowCyan);
+  text-shadow: 0 0 20px rgba(0,255,247,0.4);
 }
 
 .landing-h2-2 {
@@ -158,9 +160,8 @@ h2.landing-info-h2 {
   top: 0; left: 0;
 }
 
-/* ── Character model ── */
+/* ── Character model container ── */
 .character-model {
-  height: 80%;
   height: 80vh;
   position: absolute;
   max-width: 1920px;
@@ -171,19 +172,22 @@ h2.landing-info-h2 {
   z-index: 0;
   bottom: 50px;
   pointer-events: inherit;
+  /* Critical: solid bg so no checkerboard bleed */
+  background-color: transparent;
 }
 
-/* Cyberpunk floor glow under character */
+/* Bottom fade overlay - blends photo into page */
 .character-model::after {
   content: "";
   width: 100vw;
-  height: 250px;
-  background-image: linear-gradient(to bottom, transparent, var(--backgroundColor) 70%);
+  height: 200px;
+  background-image: linear-gradient(to bottom, transparent, var(--backgroundColor) 80%);
   bottom: -50px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 9;
+  z-index: 13;
   position: absolute;
+  pointer-events: none;
 }
 
 .character-model::before {
@@ -194,8 +198,32 @@ h2.landing-info-h2 {
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 9;
+  z-index: 13;
   position: absolute;
+  pointer-events: none;
+}
+
+/* Left/right side fades to hide photo edges on mobile */
+.character-container::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 20%;
+  height: 100%;
+  background: linear-gradient(to right, var(--backgroundColor), transparent);
+  z-index: 13;
+  pointer-events: none;
+}
+
+.character-container::after {
+  content: "";
+  position: absolute;
+  top: 0; right: 0;
+  width: 20%;
+  height: 100%;
+  background: linear-gradient(to left, var(--backgroundColor), transparent);
+  z-index: 13;
+  pointer-events: none;
 }
 
 .character-rim {
@@ -203,7 +231,7 @@ h2.landing-info-h2 {
   width: 500px;
   height: 500px;
   z-index: 1;
-  background: radial-gradient(ellipse, rgba(0,255,247,0.3) 0%, rgba(189,0,255,0.2) 50%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(0,255,247,0.2) 0%, rgba(189,0,255,0.1) 50%, transparent 70%);
   filter: blur(40px);
   border-radius: 50%;
   top: 50%;
@@ -215,7 +243,6 @@ h2.landing-info-h2 {
 .character-loaded .character-rim {
   animation: backlight 3s forwards;
   animation-delay: 0.3s;
-  opacity: 0;
 }
 
 .character-model canvas {
@@ -235,7 +262,7 @@ h2.landing-info-h2 {
   border-radius: 50%;
 }
 
-/* ── Decorative HUD elements ── */
+/* ── HUD decorations ── */
 .landing-hud-left {
   position: absolute;
   left: 0;
@@ -272,19 +299,6 @@ h2.landing-info-h2 {
   display: block;
 }
 
-/* ── Neon accent line at bottom ── */
-.landing-neon-line {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accentColor), var(--accentPink), transparent);
-  box-shadow: 0 0 10px var(--accentColor), 0 0 20px rgba(255,45,120,0.5);
-  z-index: 10;
-}
-
 /* ── Responsive ── */
 @media screen and (min-width: 500px) {
   .landing-circle2 { display: block; }
@@ -315,6 +329,8 @@ h2.landing-info-h2 {
   }
   .character-model::after,
   .character-model::before { display: none; }
+  .character-container::before,
+  .character-container::after { display: none; }
   .landing-intro {
     top: 50%;
     left: auto;
