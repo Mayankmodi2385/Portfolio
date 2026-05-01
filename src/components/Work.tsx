@@ -9,14 +9,14 @@ const projects = [
     category: "Full Stack Web Application",
     tools: "React, Node.js, Express.js, MongoDB, JWT, Cloudinary, Multer",
     image: "/images/placeholder.webp",
-    link: "https://car-rental-app.vercel.app/",
+    link: "https://drivekhata.vercel.app/",
   },
   {
     title: "Chat Sphere",
     category: "Real-Time Chat Application",
     tools: "Socket.io, Node.js, Express, MongoDB, REST APIs",
     image: "/images/placeholder.webp",
-    link: "https://mern-chat-.vercel.app/",
+    link: "https://mern-chat-sandy-phi.vercel.app/",
   },
   {
     title: "Influx",
