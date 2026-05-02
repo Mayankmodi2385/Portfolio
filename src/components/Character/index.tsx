@@ -32,7 +32,7 @@ const Character = () => {
 
       {/* Your photo - always visible, blends on dark bg */}
       <img
-        src="/mayank.png"
+        src="/mayank.webp"
         alt="Mayank Modi"
         style={{
           height: supportsWebGL ? "85%" : "75vh",
