@@ -3,7 +3,7 @@ const Character = () => {
     <div
       className="character-container"
       style={{
-        position: "fixed",
+        position: "absolute",
         top: 0,
         left: "50%",
         transform: "translateX(-50%)",
@@ -30,16 +30,23 @@ const Character = () => {
           objectFit: "contain",
           zIndex: 12,
           pointerEvents: "none",
-          mixBlendMode: "screen",
 
+          // FIX 1: multiply darkens white bg into the dark page
+          mixBlendMode: "multiply",
+
+          // FIX 2: stronger mask to kill white edges
           WebkitMaskImage:
-            "linear-gradient(to top, transparent 0%, black 20%, black 85%, transparent 100%)",
+            "linear-gradient(to top, transparent 0%, black 18%, black 80%, transparent 100%), linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
           maskImage:
-            "linear-gradient(to top, transparent 0%, black 20%, black 85%, transparent 100%)",
+            "linear-gradient(to top, transparent 0%, black 18%, black 80%, transparent 100%), linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
+          WebkitMaskComposite: "intersect",
+          maskComposite: "intersect",
+
           filter:
-            "drop-shadow(0 0 25px rgba(0,255,247,0.55)) drop-shadow(0 0 55px rgba(189,0,255,0.25))",
+            "drop-shadow(0 0 25px rgba(0,255,247,0.55)) drop-shadow(0 0 55px rgba(189,0,255,0.25)) brightness(0.9) contrast(1.1)",
         }}
       />
+
       {/* Neon glow under photo */}
       <div style={{
         position: "absolute", bottom: 0, left: "50%",
@@ -47,18 +54,21 @@ const Character = () => {
         background: "radial-gradient(ellipse, rgba(0,255,247,0.22) 0%, rgba(189,0,255,0.12) 50%, transparent 70%)",
         filter: "blur(22px)", zIndex: 11, pointerEvents: "none",
       }} />
+
       {/* Left edge fade */}
       <div style={{
         position: "absolute", top: 0, left: 0, width: "15%", height: "100%",
         background: "linear-gradient(to right, #050810, transparent)",
         zIndex: 13, pointerEvents: "none",
       }} />
+
       {/* Right edge fade */}
       <div style={{
         position: "absolute", top: 0, right: 0, width: "15%", height: "100%",
         background: "linear-gradient(to left, #050810, transparent)",
         zIndex: 13, pointerEvents: "none",
       }} />
+
       {/* Bottom fade */}
       <div style={{
         position: "absolute", bottom: 0, left: 0, width: "100%", height: "120px",
