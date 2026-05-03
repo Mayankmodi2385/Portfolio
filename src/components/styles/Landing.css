@@ -4,7 +4,6 @@
   margin: auto;
   position: relative;
   height: var(--vh);
-  /* Solid dark background - critical for mobile photo blend */
   background-color: var(--backgroundColor);
 }
 
@@ -19,7 +18,7 @@
 /* ── Intro text ── */
 .landing-intro {
   position: absolute;
-  z-index: 9;
+  z-index: 20;
   top: 12%;
   left: 0;
 }
@@ -57,7 +56,6 @@
   position: relative;
 }
 
-/* Glitch effect */
 .landing-intro h1::before,
 .landing-intro h1::after {
   content: attr(data-text);
@@ -99,7 +97,7 @@
   transform: translateX(50%);
   bottom: 40px;
   top: inherit;
-  z-index: 9;
+  z-index: 20;
   text-align: center;
 }
 
@@ -160,7 +158,8 @@ h2.landing-info-h2 {
   top: 0; left: 0;
 }
 
-/* ── Character model container ── */
+/* ── Character model ── */
+/* This is now just a placeholder div - actual photo is in Character/index.tsx fixed positioned */
 .character-model {
   height: 80vh;
   position: absolute;
@@ -171,95 +170,20 @@ h2.landing-info-h2 {
   left: 50%;
   z-index: 0;
   bottom: 50px;
-  pointer-events: inherit;
-  /* Critical: solid bg so no checkerboard bleed */
+  pointer-events: none;
   background-color: transparent;
 }
 
-/* Bottom fade overlay - blends photo into page */
-.character-model::after {
-  content: "";
-  width: 100vw;
-  height: 200px;
-  background-image: linear-gradient(to bottom, transparent, var(--backgroundColor) 80%);
-  bottom: -50px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 13;
-  position: absolute;
-  pointer-events: none;
-}
-
-.character-model::before {
-  content: "";
-  width: 100vw;
-  height: 700px;
-  background-color: var(--backgroundColor);
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 13;
-  position: absolute;
-  pointer-events: none;
-}
-
-/* Left/right side fades to hide photo edges on mobile */
-.character-container::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 20%;
-  height: 100%;
-  background: linear-gradient(to right, var(--backgroundColor), transparent);
-  z-index: 13;
-  pointer-events: none;
-}
-
-.character-container::after {
-  content: "";
-  position: absolute;
-  top: 0; right: 0;
-  width: 20%;
-  height: 100%;
-  background: linear-gradient(to left, var(--backgroundColor), transparent);
-  z-index: 13;
-  pointer-events: none;
-}
-
 .character-rim {
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  z-index: 1;
-  background: radial-gradient(ellipse, rgba(0,255,247,0.2) 0%, rgba(189,0,255,0.1) 50%, transparent 70%);
-  filter: blur(40px);
-  border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 100%) scale(1.4);
-  opacity: 0;
-}
-
-.character-loaded .character-rim {
-  animation: backlight 3s forwards;
-  animation-delay: 0.3s;
+  display: none;
 }
 
 .character-model canvas {
-  position: relative;
-  pointer-events: none;
-  z-index: 2;
+  display: none;
 }
 
 .character-hover {
-  position: absolute;
-  width: 280px;
-  height: 280px;
-  top: 50%;
-  left: 50%;
-  z-index: 3;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
+  display: none;
 }
 
 /* ── HUD decorations ── */
@@ -267,7 +191,7 @@ h2.landing-info-h2 {
   position: absolute;
   left: 0;
   bottom: 80px;
-  z-index: 9;
+  z-index: 20;
   display: none;
 }
 
@@ -284,7 +208,7 @@ h2.landing-info-h2 {
   position: absolute;
   right: 0;
   top: 50%;
-  z-index: 9;
+  z-index: 20;
   transform: translateY(-50%);
   display: none;
 }
@@ -301,8 +225,6 @@ h2.landing-info-h2 {
 
 /* ── Responsive ── */
 @media screen and (min-width: 500px) {
-  .landing-circle2 { display: block; }
-  .character-model { z-index: 0; }
   .landing-info h3 { font-size: 11px; }
   .landing-intro h2 { font-size: 11px; }
   .landing-intro h1 { font-size: 30px; line-height: 30px; }
@@ -312,7 +234,6 @@ h2.landing-info-h2 {
 }
 
 @media screen and (min-width: 768px) {
-  .character-model { height: 80vh; }
   .landing-intro h2 { font-size: 13px; }
   .landing-intro h1 { font-size: 42px; line-height: 40px; }
   .landing-info h3 { font-size: 13px; }
@@ -321,16 +242,6 @@ h2.landing-info-h2 {
 }
 
 @media screen and (min-width: 1025px) {
-  .character-model {
-    height: 100vh;
-    bottom: 0;
-    z-index: 11;
-    position: fixed;
-  }
-  .character-model::after,
-  .character-model::before { display: none; }
-  .character-container::before,
-  .character-container::after { display: none; }
   .landing-intro {
     top: 50%;
     left: auto;
@@ -341,7 +252,7 @@ h2.landing-info-h2 {
   .landing-info {
     bottom: auto;
     top: 51%;
-    z-index: inherit;
+    z-index: 20;
     text-align: left;
     transform: translate(0%, -50%);
     right: auto;
@@ -359,7 +270,6 @@ h2.landing-info-h2 {
   .landing-info {
     bottom: auto;
     top: 51%;
-    z-index: inherit;
     text-align: left;
     transform: translate(0%, -50%);
     right: auto;

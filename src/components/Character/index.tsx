@@ -1,16 +1,20 @@
-// 3D animated boy REMOVED — only Mayank's photo shown
 const Character = () => {
   return (
     <div
       className="character-container"
       style={{
-        position: "relative",
+        position: "fixed",
+        top: 0,
+        left: "50%",
+        transform: "translateX(-50%)",
         width: "100%",
-        height: "100%",
+        height: "100vh",
+        zIndex: 11,
         pointerEvents: "none",
+        background: "transparent",
       }}
     >
-      {/* Photo — visible on mobile, tablet & desktop */}
+      {/* Your photo */}
       <img
         src="/mayank.webp"
         alt="Mayank Modi"
@@ -28,15 +32,15 @@ const Character = () => {
           zIndex: 12,
           pointerEvents: "none",
           WebkitMaskImage:
-            "linear-gradient(to top, transparent 0%, black 18%, black 88%, transparent 100%)",
+            "linear-gradient(to top, transparent 0%, black 20%, black 85%, transparent 100%)",
           maskImage:
-            "linear-gradient(to top, transparent 0%, black 18%, black 88%, transparent 100%)",
+            "linear-gradient(to top, transparent 0%, black 20%, black 85%, transparent 100%)",
           filter:
             "drop-shadow(0 0 25px rgba(0,255,247,0.55)) drop-shadow(0 0 55px rgba(189,0,255,0.25))",
         }}
       />
 
-      {/* Neon glow pool on the floor under the photo */}
+      {/* Neon glow pool under photo */}
       <div
         style={{
           position: "absolute",
@@ -77,6 +81,20 @@ const Character = () => {
           height: "100%",
           background: "linear-gradient(to left, #050810, transparent)",
           zIndex: 13,
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* Bottom fade - blends feet into background */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          width: "100%",
+          height: "120px",
+          background: "linear-gradient(to top, #050810 0%, transparent 100%)",
+          zIndex: 14,
           pointerEvents: "none",
         }}
       />
