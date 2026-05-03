@@ -30,6 +30,8 @@ const Character = () => {
           objectFit: "contain",
           zIndex: 12,
           pointerEvents: "none",
+          mixBlendMode: "screen",
+
           WebkitMaskImage:
             "linear-gradient(to top, transparent 0%, black 20%, black 85%, transparent 100%)",
           maskImage:
