@@ -1,0 +1,115 @@
+.techstack {
+  width: 100%;
+  position: relative;
+  padding: 80px 0 60px;
+  margin: auto;
+  text-align: center;
+  background-color: var(--backgroundColor);
+}
+
+.techstack h2 {
+  font-size: 60px;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-family: "Orbitron", sans-serif;
+  color: var(--accentColor);
+  letter-spacing: 8px;
+  margin-bottom: 60px;
+  position: relative;
+  display: inline-block;
+}
+
+.techstack h2::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accentColor), transparent);
+  box-shadow: 0 0 10px var(--accentColor);
+}
+
+.techstack-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.tech-card {
+  width: 130px;
+  height: 130px;
+  position: relative;
+  cursor: default;
+}
+
+/* Cyberpunk corner clip */
+.tech-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 255, 247, 0.04);
+  border: 1px solid rgba(0, 255, 247, 0.15);
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  transition: background 0.3s, border-color 0.3s;
+  z-index: 0;
+}
+
+.tech-card:hover::before {
+  background: rgba(0, 255, 247, 0.1);
+  border-color: rgba(0, 255, 247, 0.5);
+  box-shadow: 0 0 20px rgba(0, 255, 247, 0.15) inset;
+}
+
+.tech-card-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 10px;
+  padding: 16px;
+}
+
+.tech-card-inner img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  filter: brightness(0.9);
+  transition: filter 0.3s, transform 0.3s;
+}
+
+.tech-card:hover .tech-card-inner img {
+  filter: brightness(1.1) drop-shadow(0 0 8px rgba(0, 255, 247, 0.5));
+  transform: scale(1.1);
+}
+
+.tech-card-inner span {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: rgba(0, 255, 247, 0.7);
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 900px) {
+  .techstack h2 { font-size: 36px; letter-spacing: 4px; }
+  .tech-card { width: 100px; height: 100px; }
+  .tech-card-inner img { width: 40px; height: 40px; }
+  .techstack-grid { gap: 16px; }
+}
+
+@media screen and (max-width: 500px) {
+  .techstack h2 { font-size: 26px; letter-spacing: 3px; }
+  .tech-card { width: 85px; height: 85px; }
+  .tech-card-inner img { width: 32px; height: 32px; }
+  .tech-card-inner span { font-size: 9px; }
+  .techstack-grid { gap: 12px; }
+}
