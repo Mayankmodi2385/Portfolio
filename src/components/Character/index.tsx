@@ -14,19 +14,6 @@ const Character = () => {
         background: "transparent",
       }}
     >
-      {/* Background glow behind the photo to make it visible */}
-      <div style={{
-        position: "absolute",
-        bottom: 0,
-        left: "50%",
-        transform: "translateX(-50%)",
-        width: "55%",
-        height: "100%",
-        background: "radial-gradient(ellipse at 50% 60%, rgba(30,35,60,0.95) 0%, rgba(15,18,35,0.7) 50%, transparent 80%)",
-        zIndex: 10,
-        pointerEvents: "none",
-      }} />
-
       <img
         src="/mayank.png"
         alt="Mayank Modi"
@@ -43,24 +30,12 @@ const Character = () => {
           objectFit: "contain",
           zIndex: 12,
           pointerEvents: "none",
-
-          // screen blend mode - shows photo, white bg becomes transparent on dark
-          mixBlendMode: "screen",
-
-          // Fade all 4 edges smoothly
-          WebkitMaskImage: `
-            linear-gradient(to top,    transparent 0%,  black 18%, black 82%, transparent 100%),
-            linear-gradient(to right,  transparent 0%,  black 12%, black 88%, transparent 100%)
-          `,
-          maskImage: `
-            linear-gradient(to top,    transparent 0%,  black 18%, black 82%, transparent 100%),
-            linear-gradient(to right,  transparent 0%,  black 12%, black 88%, transparent 100%)
-          `,
-          WebkitMaskComposite: "source-in",
-          maskComposite: "intersect",
-
+          WebkitMaskImage:
+            "linear-gradient(to top, transparent 0%, black 18%, black 85%, transparent 100%)",
+          maskImage:
+            "linear-gradient(to top, transparent 0%, black 18%, black 85%, transparent 100%)",
           filter:
-            "drop-shadow(0 0 30px rgba(0,255,247,0.6)) drop-shadow(0 0 60px rgba(189,0,255,0.3)) brightness(1.05) contrast(1.05)",
+            "drop-shadow(0 0 30px rgba(0,255,247,0.6)) drop-shadow(0 0 60px rgba(189,0,255,0.3))",
         }}
       />
 
