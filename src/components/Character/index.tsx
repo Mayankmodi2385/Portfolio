@@ -15,7 +15,7 @@ const Character = () => {
       }}
     >
       <img
-        src="/mayank.webp"
+        src="/mayank.png"
         alt="Mayank Modi"
         loading="eager"
         decoding="async"
