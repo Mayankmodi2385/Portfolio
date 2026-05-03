@@ -8,7 +8,7 @@ const Character = () => {
         left: "50%",
         transform: "translateX(-50%)",
         width: "100%",
-        height: "100vh",
+        height: "100%",
         zIndex: 11,
         pointerEvents: "none",
         background: "transparent",
@@ -24,16 +24,16 @@ const Character = () => {
           bottom: 0,
           left: "50%",
           transform: "translateX(-50%)",
-          height: "90%",
-          maxHeight: "780px",
+          height: "92%",
+          maxHeight: "800px",
           width: "auto",
           objectFit: "contain",
           zIndex: 12,
           pointerEvents: "none",
           WebkitMaskImage:
-            "linear-gradient(to top, transparent 0%, black 18%, black 85%, transparent 100%)",
+            "linear-gradient(to top, transparent 0%, black 15%, black 88%, transparent 100%)",
           maskImage:
-            "linear-gradient(to top, transparent 0%, black 18%, black 85%, transparent 100%)",
+            "linear-gradient(to top, transparent 0%, black 15%, black 88%, transparent 100%)",
           filter:
             "drop-shadow(0 0 30px rgba(0,255,247,0.6)) drop-shadow(0 0 60px rgba(189,0,255,0.3))",
         }}

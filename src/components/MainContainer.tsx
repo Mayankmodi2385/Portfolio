@@ -34,11 +34,11 @@ const MainContainer = ({ children }: PropsWithChildren) => {
       <Cursor />
       <Navbar />
       <SocialIcons />
-      {isDesktopView && children}
       <div id="smooth-wrapper">
         <div id="smooth-content">
           <div className="container-main">
-            <Landing>{!isDesktopView && children}</Landing>
+            {/* Character now inside Landing on ALL devices so it has a positioned parent */}
+            <Landing>{children}</Landing>
             <About />
             <WhatIDo />
             <Career />
