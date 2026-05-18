@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import "./styles/Work.css";
 import WorkImage from "./WorkImage";
 import { MdArrowBack, MdArrowForward } from "react-icons/md";
@@ -22,8 +22,8 @@ const projects = [
     title: "Influx — EV Charging App",
     category: "EV Charging Web App",
     tools: "React.js, REST APIs, Real-time Data",
-    image: "https://api.microlink.io/?url=https://influx-project.vercel.app/&screenshot=true&meta=false&embed=screenshot.url",
-    link: "https://influx-project.vercel.app/",
+    image: "https://api.microlink.io/?url=https://influx-project-main.vercel.app/&screenshot=true&meta=false&embed=screenshot.url",
+    link: "https://influx-project-main.vercel.app/",
   },
   {
     title: "DigiDine",
@@ -36,17 +36,19 @@ const projects = [
 
 const Work = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const animatingRef = useRef(false);
 
-  const goToSlide = useCallback(
-    (index: number) => {
-      if (isAnimating) return;
-      setIsAnimating(true);
+  const goToSlide = useCallback((index: number) => {
+    if (animatingRef.current) return;
+    animatingRef.current = true;
+    setVisible(false);
+    setTimeout(() => {
       setCurrentIndex(index);
-      setTimeout(() => setIsAnimating(false), 500);
-    },
-    [isAnimating]
-  );
+      setVisible(true);
+      animatingRef.current = false;
+    }, 280);
+  }, []);
 
   const goToPrev = useCallback(() => {
     const newIndex = currentIndex === 0 ? projects.length - 1 : currentIndex - 1;
@@ -86,7 +88,7 @@ const Work = () => {
           </button>
 
           <div className="carousel-track-container">
-            <div className="carousel-slide">
+            <div className={`carousel-slide carousel-slide--${visible ? "visible" : "hidden"}`}>
               <div className="carousel-content">
 
                 <div className="carousel-info">

@@ -299,3 +299,19 @@
   .carousel-slide { padding: 30px 0; }
   .work-image img { max-height: 250px; }
 }
+/* ── Smooth carousel fade transition ── */
+.carousel-slide {
+  transition: opacity 0.28s ease, transform 0.28s ease;
+  will-change: opacity, transform;
+}
+
+.carousel-slide--visible {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.carousel-slide--hidden {
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+}
