@@ -78,7 +78,7 @@ const SocialIcons = () => {
       </div>
       <a
         className="resume-button"
-        href="/Mayank_Modi.pdf"
+        href="/Mayank_Modi_Software_Developer.pdf"
         target="_blank"
         rel="noreferrer"
       >
