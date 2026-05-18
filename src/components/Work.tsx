@@ -12,18 +12,18 @@ const projects = [
     link: "https://car-rental-app-ecru-nine.vercel.app/",
   },
   {
-    title: "Chat Sphere",
-    category: "Real-Time Chat Application",
-    tools: "Socket.io, Node.js, Express, MongoDB, REST APIs",
-    image: "https://api.microlink.io/?url=https://mern-chat-sandy-phi.vercel.app/&screenshot=true&meta=false&embed=screenshot.url",
-    link: "https://mern-chat-sandy-phi.vercel.app/",
-  },
-  {
     title: "Influx — EV Charging App",
     category: "EV Charging Web App",
     tools: "React.js, REST APIs, Real-time Data",
     image: "https://api.microlink.io/?url=https://influx-project-main.vercel.app/&screenshot=true&meta=false&embed=screenshot.url",
     link: "https://influx-project-main.vercel.app/",
+  },
+  {
+    title: "Chat Sphere",
+    category: "Real-Time Chat Application",
+    tools: "Socket.io, Node.js, Express, MongoDB, REST APIs",
+    image: "https://api.microlink.io/?url=https://mern-chat-sandy-phi.vercel.app/&screenshot=true&meta=false&embed=screenshot.url",
+    link: "https://mern-chat-sandy-phi.vercel.app/",
   },
   {
     title: "DigiDine",
