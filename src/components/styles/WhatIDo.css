@@ -5,7 +5,8 @@
   place-items: center;
   position: relative;
   opacity: 1;
-  height: 100vh;
+  height: auto;
+  padding: 80px 0;
   width: var(--cWidth);
   max-width: 1920px;
   margin: auto;
@@ -23,7 +24,7 @@
   line-height: calc(4vw + 20px);
   font-weight: 600;
   margin-right: 10%;
-  margin-bottom: 100px;
+  margin-bottom: 0;
 }
 
 .hat-h2 {
@@ -37,7 +38,7 @@
   height: 500px;
   margin-left: 200px;
   position: relative;
-  display: none;
+  display: flex;
 }
 .what-content {
   width: 450px;
@@ -307,9 +308,10 @@
 @media only screen and (max-width: 900px) {
   .whatIDO {
     flex-direction: column;
+    padding: 40px 0;
   }
   .what-box h2 {
-    margin: 50px 0;
+    margin: 30px 0;
     font-size: 55px;
     line-height: 53px;
   }
