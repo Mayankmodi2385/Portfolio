@@ -304,11 +304,10 @@
   .carousel-info         { width: 100%; }
   .carousel-image-wrapper { width: 100%; }
   .carousel-arrow        { width: 40px; height: 40px; font-size: 18px; }
-  /* commit 2: arrow fix at 1025px */
+
   .carousel-arrow-left  { left: 10px; }
   .carousel-arrow-right { right: 10px; }
 }
-
 @media only screen and (max-width: 900px) {
   .work-section          { padding: 50px 0; }
   .work-section h2       { font-size: 40px; margin-bottom: 30px; }
