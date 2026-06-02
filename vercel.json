@@ -1,7 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "/((?!.*\\.pdf$).*)",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ]
